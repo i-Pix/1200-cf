@@ -142,27 +142,29 @@ int solve2(int arr[], int n) {
 bool isPrime(long long int n){ for (ll i = 2; i*i <= n; i++) if (n % i == 0) return false;    return true;}
 //////////////////////////////////////////////////////////////////////////////
 #define fib(n) round(pow(((1+sqrt(5))/2),n)/sqrt(5))  //fibonacci in O(1)
-
+map<int,int> graph;
+map<int,int> visited;
+int dfs(int node, int depth, int t){
+    if(visited[node] == 1){
+        return -1;
+    }
+    else if(node==t){
+        return depth;
+    }
+    visited[node]=1;
+    return dfs(graph[node],depth+1,t);
+}
 void theGiftGambit() {
-    int n;
-  
-    cin >> n;  vector<int> v(n);
-    for (size_t i = 0; i < n; i++)
-    {
-        cin >> v[i];
-    }
-    sort(begin(v),end(v));
-
-    deque<int> d;
-    for (size_t i = 0; i < n; i++)
-    {
-        if(i%2)d.push_front(v[i]);
-        else d.push_back(v[i]);
+    int n,s,t;
+    cin >> n >> s >> t;
+    for (size_t i = 1; i <= n; ++i)  
+    {   int x;
+        cin >> x;
+        graph[i]=x;
     }
 
-    for(int x : d){
-        cout << x << " ";
-    }
+    cout << dfs(s,0,t) << endl;
+    
 
 }
 signed main() {

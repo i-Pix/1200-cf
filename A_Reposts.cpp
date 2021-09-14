@@ -85,8 +85,8 @@ ll power(ll x, ll y){
 #define line "\n";
 #define out(a) cout << a << endl;
 #define MaxN    200050
-#define transforml transform(s.begin(),s.end(),s.begin(),::tolower);
-#define transformu transform(s.begin(),s.end(),s.begin(),::toupper);
+#define transforml(s) transform(s.begin(),s.end(),s.begin(),::tolower);
+#define transformu(s) transform(s.begin(),s.end(),s.begin(),::toupper);
 #define array_input(a,n) ll a[n]; REP(i,n) cin >> a[i];
 #define YES cout<<"YES"<<endl;
 #define NO cout<<"NO"<<endl;
@@ -145,25 +145,18 @@ bool isPrime(long long int n){ for (ll i = 2; i*i <= n; i++) if (n % i == 0) ret
 
 void theGiftGambit() {
     int n;
-  
-    cin >> n;  vector<int> v(n);
-    for (size_t i = 0; i < n; i++)
-    {
-        cin >> v[i];
+   
+    cin >> n; map<string,int> mp;
+    int ans = 0;
+    while(n--){
+        string a,_,c;
+        cin >> a >> _ >> c;
+        transforml(a);
+        transforml(c);
+        mp[a]=mp[c]+1;
+        ans = max(ans,mp[a]);
     }
-    sort(begin(v),end(v));
-
-    deque<int> d;
-    for (size_t i = 0; i < n; i++)
-    {
-        if(i%2)d.push_front(v[i]);
-        else d.push_back(v[i]);
-    }
-
-    for(int x : d){
-        cout << x << " ";
-    }
-
+    cout << ans + 1;
 }
 signed main() {
     IOS

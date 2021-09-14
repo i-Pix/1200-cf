@@ -145,25 +145,22 @@ bool isPrime(long long int n){ for (ll i = 2; i*i <= n; i++) if (n % i == 0) ret
 
 void theGiftGambit() {
     int n;
-  
-    cin >> n;  vector<int> v(n);
+    
+    cin >> n;vector<int> v(n);
+    bool o = false, e = false;
     for (size_t i = 0; i < n; i++)
     {
         cin >> v[i];
+        if(v[i]%2)e=true;
+        else o = true;
     }
+    if( o && e )
     sort(begin(v),end(v));
-
-    deque<int> d;
-    for (size_t i = 0; i < n; i++)
+    for (size_t i = 0; i < v.size(); i++)
     {
-        if(i%2)d.push_front(v[i]);
-        else d.push_back(v[i]);
+        cout << v[i] << " ";
     }
-
-    for(int x : d){
-        cout << x << " ";
-    }
-
+    
 }
 signed main() {
     IOS

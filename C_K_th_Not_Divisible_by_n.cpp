@@ -144,25 +144,14 @@ bool isPrime(long long int n){ for (ll i = 2; i*i <= n; i++) if (n % i == 0) ret
 #define fib(n) round(pow(((1+sqrt(5))/2),n)/sqrt(5))  //fibonacci in O(1)
 
 void theGiftGambit() {
-    int n;
-  
-    cin >> n;  vector<int> v(n);
-    for (size_t i = 0; i < n; i++)
-    {
-        cin >> v[i];
-    }
-    sort(begin(v),end(v));
-
-    deque<int> d;
-    for (size_t i = 0; i < n; i++)
-    {
-        if(i%2)d.push_front(v[i]);
-        else d.push_back(v[i]);
-    }
-
-    for(int x : d){
-        cout << x << " ";
-    }
+	ll n,k,r=0,q;
+		cin>>n>>k;
+		r=k%(n-1);
+		q=k/(n-1);
+		if(r==0)
+		cout<<(n*q)-1<<"\n";
+		else
+		cout<<(n*q)+r<<"\n";
 
 }
 signed main() {
@@ -176,7 +165,7 @@ signed main() {
 //T(t)
 //REPN(i,t) {
 //    cout<<"Case #"<<i<<": ";
-//        TEST(q)
+       TEST(q)
     theGiftGambit();
 
 //}

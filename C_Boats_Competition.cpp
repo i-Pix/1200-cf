@@ -142,28 +142,43 @@ int solve2(int arr[], int n) {
 bool isPrime(long long int n){ for (ll i = 2; i*i <= n; i++) if (n % i == 0) return false;    return true;}
 //////////////////////////////////////////////////////////////////////////////
 #define fib(n) round(pow(((1+sqrt(5))/2),n)/sqrt(5))  //fibonacci in O(1)
-
+ int w[200];
+    int c[200];
 void theGiftGambit() {
-    int n;
-  
-    cin >> n;  vector<int> v(n);
-    for (size_t i = 0; i < n; i++)
-    {
-        cin >> v[i];
-    }
-    sort(begin(v),end(v));
-
-    deque<int> d;
-    for (size_t i = 0; i < n; i++)
-    {
-        if(i%2)d.push_front(v[i]);
-        else d.push_back(v[i]);
-    }
-
-    for(int x : d){
-        cout << x << " ";
-    }
-
+    TEST(t){
+   
+   int n;
+		cin >> n;
+		ll a[n];
+		int *b = new int[2 * n + 1]();
+		for (int i = 0; i < n; i++)
+		{
+			cin >> a[i];
+			b[a[i]]++;
+		}
+		ll ans = 0;
+		for (int i = 1; i <= 2 * n; i++)
+		{
+			ll ans2 = 0;
+			int *visited = new int[2 * n + 1]();
+			for (int j = 1; j < i; j++)
+			{
+				if (visited[j] == 1)
+					continue;
+				int x = b[j];
+				int y = b[i - j];
+				visited[j] = 1;
+				visited[i - j] = 1;
+				if (2 * j == i)
+					ans2 += x / 2;
+				else
+					ans2 += min(x, y);
+			}
+			ans = max(ans, ans2);
+		}
+		cout << ans << endl;
+    
+}
 }
 signed main() {
     IOS
@@ -177,12 +192,16 @@ signed main() {
 //REPN(i,t) {
 //    cout<<"Case #"<<i<<": ";
 //        TEST(q)
-    theGiftGambit();
+    
+    auto start1 = high_resolution_clock::now();
+	theGiftGambit();
+	auto stop1 = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>(stop1 - start1);
+#ifndef ONLINE_JUDGE
+	cerr << "Time: " << duration.count() / 1000.0 << endl;
+#endif
 
 //}
     //    }
     return 0;
 }
-
-
-

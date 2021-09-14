@@ -144,25 +144,49 @@ bool isPrime(long long int n){ for (ll i = 2; i*i <= n; i++) if (n % i == 0) ret
 #define fib(n) round(pow(((1+sqrt(5))/2),n)/sqrt(5))  //fibonacci in O(1)
 
 void theGiftGambit() {
-    int n;
-  
-    cin >> n;  vector<int> v(n);
-    for (size_t i = 0; i < n; i++)
-    {
-        cin >> v[i];
-    }
-    sort(begin(v),end(v));
-
-    deque<int> d;
-    for (size_t i = 0; i < n; i++)
-    {
-        if(i%2)d.push_front(v[i]);
-        else d.push_back(v[i]);
-    }
-
-    for(int x : d){
-        cout << x << " ";
-    }
+ int n,k;
+	  cin>>n>>k;
+	  if( n%2!=0 && k%2==0)
+		cout<<"NO"<<endl;
+	  if( n%2==0 && k%2==0) {
+	        int s=0;
+	    if( n<k )
+	    	cout << "NO" << endl;
+	    else {
+	        cout<<"YES"<<endl;
+	        for(int i=1;i<k;i++){
+	            cout<<"1 ";
+	            s+=1;
+	        }
+	        cout<<n-s<<endl;
+	    }
+	  }
+	  if( n%2==0 && k%2!=0) {
+	        int s=0;
+	    if( n<2*k )
+	    	cout << "NO" << endl;
+	    else{
+	        cout<<"YES"<<endl;
+	        for(int i=1;i<k;i++){
+	            cout<<"2 ";
+	            s+=2;
+	        }
+	        cout<<n-s<<endl;
+	    }
+	  }
+	  if(n%2!=0&&k%2!=0){
+	    int s=0;
+	    if( n<k )
+	    	cout<<"NO"<<endl;
+	    else {
+	        cout<<"YES"<<endl;
+	        for(int i=1;i<k;i++){
+	            cout<<"1 ";
+	            s+=1;
+	        }
+	        cout<<n-s<<endl;
+	    }
+	    }
 
 }
 signed main() {
@@ -176,7 +200,7 @@ signed main() {
 //T(t)
 //REPN(i,t) {
 //    cout<<"Case #"<<i<<": ";
-//        TEST(q)
+       TEST(q)
     theGiftGambit();
 
 //}

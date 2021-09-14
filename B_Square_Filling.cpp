@@ -84,7 +84,6 @@ ll power(ll x, ll y){
 //#define array(a)   ll a[n];
 #define line "\n";
 #define out(a) cout << a << endl;
-#define MaxN    200050
 #define transforml transform(s.begin(),s.end(),s.begin(),::tolower);
 #define transformu transform(s.begin(),s.end(),s.begin(),::toupper);
 #define array_input(a,n) ll a[n]; REP(i,n) cin >> a[i];
@@ -142,27 +141,44 @@ int solve2(int arr[], int n) {
 bool isPrime(long long int n){ for (ll i = 2; i*i <= n; i++) if (n % i == 0) return false;    return true;}
 //////////////////////////////////////////////////////////////////////////////
 #define fib(n) round(pow(((1+sqrt(5))/2),n)/sqrt(5))  //fibonacci in O(1)
-
+const int MaxN = 2e3+10;
+int a[MaxN][MaxN],b[MaxN][MaxN];
 void theGiftGambit() {
-    int n;
-  
-    cin >> n;  vector<int> v(n);
-    for (size_t i = 0; i < n; i++)
-    {
-        cin >> v[i];
-    }
-    sort(begin(v),end(v));
+   
+    vector<pair<int,int>> v;
 
-    deque<int> d;
-    for (size_t i = 0; i < n; i++)
+    int n, m;
+    int i, j;
+ 
+    cin >> n >> m;
+    for(i = 1; i <= n; i ++)
+        for(j = 1; j <= m; j ++)
+          cin >> a[i][j];
+ 
+    for(i = 1; i < n; i ++)
+        for(j = 1; j < m; j ++)
+            if(a[i][j] && a[i][j + 1] && a[i + 1][j] && a[i + 1][j + 1])
+            {
+                v.push_back(make_pair(i, j));
+                b[i][j] = b[i][j + 1] = b[i + 1][j] = b[i + 1][j + 1] = 1;
+            }
+    for (size_t i = 1; i <= n; i++)
     {
-        if(i%2)d.push_front(v[i]);
-        else d.push_back(v[i]);
+        for (size_t j = 1; j <= m; j++)
+        {
+            if(a[i][j]!=b[i][j]){
+            puts("-1");
+            return;}
+        }
+        
     }
-
-    for(int x : d){
-        cout << x << " ";
+    cout << v.size() << endl;
+    for (size_t i = 0; i < v.size(); i++)
+    {
+        cout << v.at(i).first << " " << v.at(i).second << endl;
     }
+    
+    
 
 }
 signed main() {
